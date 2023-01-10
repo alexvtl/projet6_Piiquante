@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 //besoin du model User car on va enregistrer et lire des users
 const User = require('../models/User')
 
+require("dotenv").config();
+
 // Fonction pour enregistrer un utilisateur :
 //fonction pr hacher le mot de passe, asynchrone(qui prend du tps) donc un bloc ".then" et un bloc ".catch"
 //on appelle la méthode "hash"
@@ -40,7 +42,7 @@ exports.signup = (req, res, next) => {
                        userId: user._id,
                        token: jwt.sign(//appel de la fonction "sign" qui prend en arguments :
                            {userId: user._id},//user identifié par son id / => données que l'on veut encoder à l'intérieur du token(payload)
-                           'RANDOM_TOKEN_SECRET',//ici la clé secrète pr l'encodage
+                           `${process.env.RANDOM_TOKEN_SECRET}`,//ici la clé secrète pr l'encodage
                            {expiresIn: '24h'}
                        )
                    });

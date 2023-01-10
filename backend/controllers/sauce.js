@@ -1,7 +1,10 @@
 const fs = require('fs');
+//La fonction unlink permet de supprimer des fichiers du système de fichiers.
 
 const Sauce = require('../models/Sauce');
 const express = require("express");
+
+//Les contrôleurs contiennent la logique métier, et sont importés par les routeurs, qui attribuent cette logique aux routes spécifiques.
 
 exports.createThing = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);

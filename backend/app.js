@@ -11,11 +11,11 @@ app.use(helmet());
 //importation de dotenv (variables d'environnement)
 require("dotenv").config();
 
-const stuffRoutes = require('./routes/sauce')
+const sauceRoutes = require('./routes/sauce')
 const userRoutes = require('./routes/user')
 const path = require('path');
 //pour transformer le corps (le body) en json objet javascript utilisable
-app.use(express.json());//=> permet d'acceder au corps de la requête(en réceptionnant les requêtes qui ont du json, un content-type json) et met à disposition ds req.body
+app.use(express.json());//=> permet d'acceder au corps de la requête(en réceptionnant les requêtes qui sont du json, un content-type json) et met à disposition ds req.body
 //Accès à l'API avec des headers définis / Gérer les CORS avec des Headers spécifiques de contrôle d'accès définis
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/sauces', stuffRoutes);
+app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 //chemin complet de l'image sur le disk (accéder aux images du dossier images)
